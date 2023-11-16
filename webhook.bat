@@ -16,6 +16,7 @@ set "outputFile=payload.html"
     )
 ) > "%outputFile%"
 
+echo.
 echo HTML grabber made! Exiting program in 5 seconds...
 timeout /nobreak /t 5 >nul
 
