@@ -7,7 +7,7 @@ HTML Grabber is a lil script I made that grabs the victims IP when they open a h
 3. Enjoy!
 
 ## Preview
-https://raw.githubusercontent.com/damnkyro/media/main/media/html-grabber-preview.png?token=GHSAT0AAAAAACGJRLUYCWERUE4EZNY5PWLCZKWT4BA
+![image](https://raw.githubusercontent.com/damnkyro/media/main/media/html-grabber-preview.png)
 
 ## Disclaimer
 This was made for educational purposes. I do not take any responsibility for malicious use of this program. By downloading this script, you agree to taking responsibility and accountability of any consequences caused by your actions.
